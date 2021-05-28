@@ -25,9 +25,18 @@ For a full breakdown of the tool and example output, checkout:<br>
 <a href="https://m8r0wn.com/posts/2021/01/crosslinked.html">https://m8r0wn.com/posts/2021/01/crosslinked.html </a>
 
 ## Setup
+#### Linux
 ```bash
 git clone https://github.com/m8r0wn/crosslinked
 cd crosslinked
+source venv/bin/active
+pip3 install -r requirements.txt
+```
+#### Windows
+```
+git clone https://github.com/m8r0wn/crosslinked
+cd crosslinked
+.\venv\bin\Activate.ps1
 pip3 install -r requirements.txt
 ```
 
@@ -40,6 +49,10 @@ python3 crosslinked.py -f '{first}.{last}@domain.com' company_name
 
 ```bash
 python3 crosslinked.py -f 'domain\{f}{last}' -t 45 -j 1 company_name
+```
+
+```bash
+python3 crosslinked.py -f '{first},{last},{first}.{last}@domain.com,{title}' company_name -o users.csv
 ```
 
 ## Usage

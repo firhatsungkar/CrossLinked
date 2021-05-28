@@ -164,6 +164,19 @@ def formatter(nformat, first, last):
     name = name.replace('{last}', last)
     return name
 
+def formatterWithTitle(nformat, data):
+    first = data['first']
+    last = data['last']
+    title = data['title']
+    name = nformat
+    name = name.replace('{f}', first[0])
+    name = name.replace('{first}', first)
+    name = name.replace('{l}', last[0])
+    name = name.replace('{last}', last)
+    name = name.replace('{t}', title[0])
+    name = name.replace('{title}', title)
+    return name
+
 def getUsers(engine, args):
     logger.info("Searching {} for valid employee names at \"{}\"".format(engine, args.company_name))
     c = CrossLinked(engine,  args.company_name, args.timeout, 3, args.header, args.proxy, args.jitter, args.safe,args.debug)
@@ -178,7 +191,8 @@ def main(args):
     for engine in args.engine:
         for name, data in getUsers(engine, args).items():
             try:
-                id = formatter(args.nformat, data['first'], data['last'])
+                # id = formatter(args.nformat, data['first'], data['last'])
+                id = formatterWithTitle(args.nformat, data)
                 if id not in names:
                     names[id] = data
             except:
